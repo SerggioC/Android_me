@@ -31,11 +31,26 @@
 
 
         <!-- This container holds the head BodyPartFragment of the custom Android-Me image -->
-        <FrameLayout android:id="@+id/head_container"
-        android:layout_width="match_parent"
-        android:layout_height="180dp"
-        android:scaleType="centerInside"/>
 
+        <!-- This container holds the head BodyPartFragment of the custom Android-Me image -->
+        <FrameLayout
+            android:id="@+id/head_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="centerInside"/>
+
+        <FrameLayout
+            android:id="@+id/body_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="centerInside"/>
+
+        <!-- This container holds the head BodyPartFragment of the custom Android-Me image -->
+        <FrameLayout
+            android:id="@+id/feet_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="centerInside"/>
 
 
     </LinearLayout>
