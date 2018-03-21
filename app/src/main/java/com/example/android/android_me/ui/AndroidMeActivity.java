@@ -16,12 +16,17 @@
 
 package com.example.android.android_me.ui;
 
+import android.content.Intent;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.example.android.android_me.R;
 import com.example.android.android_me.data.AndroidImageAssets;
+
+import static com.example.android.android_me.ui.MainActivity.BODY_INDEX;
+import static com.example.android.android_me.ui.MainActivity.FEET_INDEX;
+import static com.example.android.android_me.ui.MainActivity.HEAD_INDEX;
 
 // This activity will display a custom Android image composed of three body parts: head, body, and legs
 public class AndroidMeActivity extends AppCompatActivity {
@@ -39,6 +44,10 @@ public class AndroidMeActivity extends AppCompatActivity {
     // TODO (4) Create a new Activity named MainActivity and a corresponding layout file that displays a MasterListFragment
         // Remember, to display a static fragment in a layout file, use the <fragment> tag
 
+    private int headIndex;
+    private int bodyIndex;
+    private int feetIndex;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,12 +57,18 @@ public class AndroidMeActivity extends AppCompatActivity {
         // Only create new fragments when there is no previously saved state
         if(savedInstanceState == null) {
 
+            Intent intent = getIntent();
+            Bundle bundle = intent.getExtras();
+            headIndex = bundle.getInt(HEAD_INDEX);
+            bodyIndex = bundle.getInt(BODY_INDEX);
+            feetIndex = bundle.getInt(FEET_INDEX);
+
             // Create a new head BodyPartFragment
             BodyPartFragment headFragment = new BodyPartFragment();
 
             // Set the list of image id's for the head fragment and set the position to the second image in the list
             headFragment.setImageIds(AndroidImageAssets.getHeads());
-            headFragment.setListIndex(1);
+            headFragment.setListIndex(headIndex);
 
             // Add the fragment to its container using a FragmentManager and a Transaction
             FragmentManager fragmentManager = getSupportFragmentManager();
@@ -65,15 +80,17 @@ public class AndroidMeActivity extends AppCompatActivity {
             // Create and display the body and leg BodyPartFragments
 
             BodyPartFragment bodyFragment = new BodyPartFragment();
+            bodyFragment.setListIndex(bodyIndex);
             bodyFragment.setImageIds(AndroidImageAssets.getBodies());
             fragmentManager.beginTransaction()
                     .add(R.id.body_container, bodyFragment)
                     .commit();
 
-            BodyPartFragment legFragment = new BodyPartFragment();
-            legFragment.setImageIds(AndroidImageAssets.getLegs());
+            BodyPartFragment legsFragment = new BodyPartFragment();
+            legsFragment.setListIndex(feetIndex);
+            legsFragment.setImageIds(AndroidImageAssets.getLegs());
             fragmentManager.beginTransaction()
-                    .add(R.id.leg_container, legFragment)
+                    .add(R.id.leg_container, legsFragment)
                     .commit();
         }
 

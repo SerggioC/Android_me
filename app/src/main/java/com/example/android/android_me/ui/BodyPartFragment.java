@@ -55,7 +55,7 @@ public class BodyPartFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         // Load the saved state (the list of images and list index) if there is one
-        if(savedInstanceState != null) {
+        if (savedInstanceState != null) {
             mImageIds = savedInstanceState.getIntegerArrayList(IMAGE_ID_LIST);
             mListIndex = savedInstanceState.getInt(LIST_INDEX);
         }
@@ -68,7 +68,7 @@ public class BodyPartFragment extends Fragment {
 
         // If a list of image ids exists, set the image resource to the correct item in that list
         // Otherwise, create a Log statement that indicates that the list was not found
-        if(mImageIds != null){
+        if (mImageIds != null) {
             // Set the image resource to the list item at the stored index
             imageView.setImageResource(mImageIds.get(mListIndex));
 
@@ -77,7 +77,7 @@ public class BodyPartFragment extends Fragment {
                 @Override
                 public void onClick(View view) {
                     // Increment position as long as the index remains <= the size of the image ids list
-                    if(mListIndex < mImageIds.size()-1) {
+                    if (mListIndex < mImageIds.size() - 1) {
                         mListIndex++;
                     } else {
                         // The end of list has been reached, so return to beginning index
