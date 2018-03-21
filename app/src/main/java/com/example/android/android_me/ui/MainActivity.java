@@ -45,19 +45,17 @@ public class MainActivity extends AppCompatActivity implements MasterListFragmen
 
         if (isTwoPane) {
             nextButton.setVisibility(View.GONE);
+            BodyPartFragment fragment = new BodyPartFragment();
 
             switch (bodyPartIndex) {
                 case 0: {
                     headIndex = index;
 
-                    // Create a new head BodyPartFragment
-                    BodyPartFragment headFragment = new BodyPartFragment();
-
                     // Set the list of image id's for the head fragment and set the position to the second image in the list
-                    headFragment.setImageIds(AndroidImageAssets.getHeads());
-                    headFragment.setListIndex(headIndex);
+                    fragment.setImageIds(AndroidImageAssets.getHeads());
+                    fragment.setListIndex(headIndex);
                     fragmentManager.beginTransaction()
-                            .replace(R.id.head_container, headFragment)
+                            .replace(R.id.head_container, fragment)
                             .commit();
 
                     break;
@@ -65,24 +63,20 @@ public class MainActivity extends AppCompatActivity implements MasterListFragmen
                 case 1: {
                     bodyIndex = index;
 
-                    // Create and display the body BodyPartFragment
-                    BodyPartFragment bodyFragment = new BodyPartFragment();
-                    bodyFragment.setListIndex(bodyIndex);
-                    bodyFragment.setImageIds(AndroidImageAssets.getBodies());
+                    fragment.setListIndex(bodyIndex);
+                    fragment.setImageIds(AndroidImageAssets.getBodies());
                     fragmentManager.beginTransaction()
-                            .replace(R.id.body_container, bodyFragment)
+                            .replace(R.id.body_container, fragment)
                             .commit();
                     break;
                 }
                 case 2: {
                     feetIndex = index;
 
-                    // Create a new legs BodyPartFragment
-                    BodyPartFragment legsFragment = new BodyPartFragment();
-                    legsFragment.setListIndex(feetIndex);
-                    legsFragment.setImageIds(AndroidImageAssets.getLegs());
+                    fragment.setListIndex(feetIndex);
+                    fragment.setImageIds(AndroidImageAssets.getLegs());
                     fragmentManager.beginTransaction()
-                            .replace(R.id.leg_container, legsFragment)
+                            .replace(R.id.leg_container, fragment)
                             .commit();
 
                     break;
